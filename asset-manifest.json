@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.cd96bdd4.css",
-    "main.js": "/static/js/main.e07a8203.js",
-    "index.html": "/index.html",
-    "main.cd96bdd4.css.map": "/static/css/main.cd96bdd4.css.map",
-    "main.e07a8203.js.map": "/static/js/main.e07a8203.js.map"
+    "main.css": "/fibonacci-spiral/static/css/main.cd96bdd4.css",
+    "main.js": "/fibonacci-spiral/static/js/main.e07a8203.js",
+    "index.html": "/fibonacci-spiral/index.html",
+    "main.cd96bdd4.css.map": "/fibonacci-spiral/static/css/main.cd96bdd4.css.map",
+    "main.e07a8203.js.map": "/fibonacci-spiral/static/js/main.e07a8203.js.map"
   },
   "entrypoints": [
     "static/css/main.cd96bdd4.css",
