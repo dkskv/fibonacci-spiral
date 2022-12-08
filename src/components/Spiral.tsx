@@ -15,12 +15,12 @@ interface IProps {
 
 export const Spiral: React.FC<IProps> = memo(
   ({ coefficients, areaWidth, areaHeight, areaPadding }) => {
-    areaWidth -= areaPadding * 2;
-    areaHeight -= areaPadding * 2;
+    const maxSpiralWidth = areaWidth - areaPadding * 2;
+    const maxSpiralHeight = areaHeight - areaPadding * 2;
 
     const sizeFactor = Math.min(
-      areaWidth / optionalSum(coefficients.slice(0, 2)),
-      areaHeight / optionalSum(coefficients.slice(0, 1))
+      maxSpiralWidth / optionalSum(coefficients.slice(0, 2)),
+      maxSpiralHeight / optionalSum(coefficients.slice(0, 1))
     );
 
     const squareSizes = coefficients.map((a) => a * sizeFactor);
@@ -29,17 +29,17 @@ export const Spiral: React.FC<IProps> = memo(
 
     const spiralWidth = optionalSum(squareSizes.slice(0, 2));
     const spiralHeight = optionalSum(squareSizes.slice(0, 1));
-    const x = (areaWidth - spiralWidth) / 2 + areaPadding;
-    const y = (areaHeight - spiralHeight) / 2 + areaPadding;
+    const x = (areaWidth - spiralWidth) / 2;
+    const y = (areaHeight - spiralHeight) / 2;
 
     return (
       <svg
+        width={areaWidth}
+        height={areaHeight}
+        transform-origin="50% 50%"
+        transform="scale(1,-1)" // для отражения оси Y
         style={{
-          width: "100%",
-          height: "100%",
           border: "1px solid lightgrey",
-          transformOrigin: "50% 50%",
-          transform: `scale(1,-1)`, // для отражения оси Y
         }}
       >
         <g transform={`translate(${x} ${y})`}>
