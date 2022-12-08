@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/fibonacci-spiral/static/css/main.cd96bdd4.css",
-    "main.js": "/fibonacci-spiral/static/js/main.e07a8203.js",
+    "main.css": "/fibonacci-spiral/static/css/main.29a32135.css",
+    "main.js": "/fibonacci-spiral/static/js/main.e8b29f37.js",
     "index.html": "/fibonacci-spiral/index.html",
-    "main.cd96bdd4.css.map": "/fibonacci-spiral/static/css/main.cd96bdd4.css.map",
-    "main.e07a8203.js.map": "/fibonacci-spiral/static/js/main.e07a8203.js.map"
+    "main.29a32135.css.map": "/fibonacci-spiral/static/css/main.29a32135.css.map",
+    "main.e8b29f37.js.map": "/fibonacci-spiral/static/js/main.e8b29f37.js.map"
   },
   "entrypoints": [
-    "static/css/main.cd96bdd4.css",
-    "static/js/main.e07a8203.js"
+    "static/css/main.29a32135.css",
+    "static/js/main.e8b29f37.js"
   ]
 }
