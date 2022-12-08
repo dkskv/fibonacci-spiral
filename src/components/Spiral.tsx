@@ -36,9 +36,9 @@ export const Spiral: React.FC<IProps> = memo(
       <svg
         width={areaWidth}
         height={areaHeight}
-        transform-origin="50% 50%"
-        transform="scale(1,-1)" // для отражения оси Y
         style={{
+          transformOrigin: "50% 50%",
+          transform: "scale(1,-1)", // для отражения оси Y
           border: "1px solid lightgrey",
         }}
       >
