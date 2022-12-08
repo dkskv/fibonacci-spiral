@@ -25,30 +25,31 @@ function App() {
 
   return (
     <div className="App">
-      <div style={{ width: "300px", maxWidth: "100%" }}>
-        <p>Количество сегментов</p>
-        <Slider
-          min={1}
-          max={10}
-          value={segmentsNumber}
-          onChange={handleSliderChange}
-          dots={true}
-        />
-      </div>
-      <div
-        ref={setElement}
-        style={{
-          width: "700px",
-          height: "500px",
-          maxWidth: "100%",
-        }}
-      >
-        <Spiral
-          coefficients={coefficients}
-          areaWidth={rect?.width ?? 0}
-          areaHeight={rect?.height ?? 0}
-          areaPadding={10}
-        />
+      <div className="container">
+        <div>
+          <p>Количество сегментов</p>
+          <Slider
+            min={1}
+            max={10}
+            value={segmentsNumber}
+            onChange={handleSliderChange}
+            dots={true}
+          />
+        </div>
+        <div
+          ref={setElement}
+          style={{
+            height: "500px",
+            width: "100%",
+          }}
+        >
+          <Spiral
+            coefficients={coefficients}
+            areaWidth={rect?.width ?? 0}
+            areaHeight={rect?.height ?? 0}
+            areaPadding={10}
+          />
+        </div>
       </div>
     </div>
   );
