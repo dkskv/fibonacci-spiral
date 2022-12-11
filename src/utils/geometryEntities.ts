@@ -36,6 +36,10 @@ export class Segment {
   get y2() {
     return this.b.y;
   }
+
+  get center() {
+    return this.a.add(this.b).divByNumber(2);
+  }
 }
 
 export class Point {
@@ -57,6 +61,10 @@ export class Point {
     return this.map((a) => a * n);
   }
 
+  divByNumber(n: number) {
+    return this.map((a) => a / n);
+  }
+
   map(f: (n: number) => number) {
     return new Point(f(this.x), f(this.y));
   }
@@ -69,49 +77,71 @@ export class Point {
     return Math.sqrt((this.x - p.x) ** 2 + (this.y - p.y) ** 2);
   }
 
-  // /** от 0 до 2pi */
-  // private get polarAngle() {
-  //   const { x, y } = this;
+  /** от 0 до 2pi */
+  private get polarAngle() {
+    const { x, y } = this;
 
-  //   if (x === 0 && y > 0) {
-  //     return Math.PI / 2;
-  //   }
+    if (x === 0 && y > 0) {
+      return Math.PI / 2;
+    }
 
-  //   if (x === 0 && y < 0) {
-  //     return (3 * Math.PI) / 2;
-  //   }
+    if (x === 0 && y < 0) {
+      return (3 * Math.PI) / 2;
+    }
 
-  //   const alfa = Math.atan(y / x);
+    const alfa = Math.atan(y / x);
 
-  //   if (x > 0 && y >= 0) {
-  //     return alfa;
-  //   }
+    if (x > 0 && y >= 0) {
+      return alfa;
+    }
 
-  //   if (x > 0 && y < 0) {
-  //     return alfa + 2 * Math.PI;
-  //   }
+    if (x > 0 && y < 0) {
+      return alfa + 2 * Math.PI;
+    }
 
-  //   if (x < 0) {
-  //     return alfa + Math.PI;
-  //   }
+    if (x < 0) {
+      return alfa + Math.PI;
+    }
 
-  //   return NaN;
-  // }
+    return NaN;
+  }
 
-  // get polarRadius() {
-  //   return Math.sqrt(this.x ** 2 + this.y ** 2);
-  // }
+  setPolarAngle(value: number) {
+    const { polarRadius } = this;
+    return new Point(
+      polarRadius * Math.cos(value),
+      polarRadius * Math.sin(value)
+    );
+  }
 
-  // /** Вращение в полярных координатах */
-  // rotate(angle: number) {
-  //   const { polarRadius, polarAngle } = this;
-  //   return new Point(
-  //     polarRadius * Math.cos(polarAngle + angle),
-  //     polarRadius * Math.sin(polarAngle + angle)
-  //   );
-  // }
+  get polarRadius() {
+    return Math.sqrt(this.x ** 2 + this.y ** 2);
+  }
 
-  // rotateRespectTo(origin: Point, alfa: number) {
-  //   return this.subtract(origin).rotate(alfa).add(origin);
-  // }
+  setPolarRadius(value: number) {
+    const { polarAngle } = this;
+    return new Point(
+      value * Math.cos(polarAngle),
+      value * Math.sin(polarAngle)
+    );
+  }
+
+  shiftPolarRadius(delta: number) {
+    const { polarRadius } = this;
+    return this.setPolarRadius(polarRadius + delta);
+  }
+
+  rotate(delta: number) {
+    const { polarAngle } = this;
+    return this.setPolarAngle(polarAngle + delta);
+  }
+
+  rotateRespectTo(origin: Point, alfa: number) {
+    return this.subtract(origin).rotate(alfa).add(origin);
+  }
+
+  /** Сдвинуться от переданной точки */
+  moveFrom(origin: Point, delta: number) {
+    return this.subtract(origin).shiftPolarRadius(delta).add(origin);
+  }
 }
