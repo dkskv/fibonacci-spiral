@@ -1,9 +1,9 @@
 import { memo } from "react";
 import { generateSpiralSegments } from "../utils/generateSpiralSegments";
 import {
-  generateSegmentThicknesses,
-  ISpiralThickness,
-} from "../utils/generateSegmentSizes";
+  generateArcsThickness,
+  IArcThickness,
+} from "../utils/generateArcsThickness";
 import { Box, Segment } from "../utils/geometryEntities";
 
 function optionalSum(ns: (number | undefined)[]) {
@@ -36,7 +36,7 @@ export const Spiral: React.FC<IProps> = memo(
     const x = (areaWidth - spiralWidth) / 2;
     const y = (areaHeight - spiralHeight) / 2;
 
-    const thicknesses = generateSegmentThicknesses(coefficients, 30);
+    const arcsThickness = generateArcsThickness(coefficients, 30);
 
     return (
       <svg
@@ -51,7 +51,7 @@ export const Spiral: React.FC<IProps> = memo(
         <g transform={`translate(${x} ${y})`}>
           <g>{segments.map(renderSquare)}</g>
           <g>{segments.map(renderLine)}</g>
-          <g>{segments.map((s, i) => renderArc(s, i, thicknesses[i]))}</g>
+          <g>{segments.map((s, i) => renderArc(s, i, arcsThickness[i]))}</g>
         </g>
       </svg>
     );
@@ -75,11 +75,7 @@ function renderLine({ x1, y1, x2, y2 }: Segment, index: number) {
   return <line key={index} {...{ x1, y1, x2, y2 }} stroke="lightgrey" />;
 }
 
-function renderArc(
-  segment: Segment,
-  index: number,
-  thickness: ISpiralThickness
-) {
+function renderArc(segment: Segment, index: number, thickness: IArcThickness) {
   const { size, center, a, b } = segment;
   const rotationOrigin = b.rotateRespectTo(center, -Math.PI / 2);
 
