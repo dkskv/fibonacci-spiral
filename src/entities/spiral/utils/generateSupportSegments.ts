@@ -1,6 +1,7 @@
-import { Point, Segment } from "./geometryEntities";
+import { Point } from "../../../shared/geometry/Point";
+import { Segment } from "../../../shared/geometry/Segment";
 
-export function generateSpiralSegments(sizes: number[]): Segment[] {
+export function generateSupportSegments(sizes: number[]): Segment[] {
   let point0 = new Point(0, 0);
   let angle = Math.PI / 4;
 

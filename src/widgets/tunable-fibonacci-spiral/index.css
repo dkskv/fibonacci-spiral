@@ -1,10 +1,4 @@
-.App {
-  display: flex;
-  justify-content: center;
-  padding: 16px;
-}
-
-.container {
+.TunableFibonacciSpiral {
   width: 700px;
   max-width: 100%;
   display: flex;

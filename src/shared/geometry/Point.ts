@@ -1,47 +1,7 @@
-export class Box {
-  static byDiagonal(diagonal: Segment) {
-    const origin = diagonal.a.zipWith(diagonal.b, Math.min);
-    const diff = diagonal.b.subtract(diagonal.a).map(Math.abs);
-
-    return new Box(origin.x, origin.y, diff.x, diff.y);
-  }
-
-  constructor(
-    public x: number,
-    public y: number,
-    public width: number,
-    public height: number
-  ) {}
-}
-
-export class Segment {
-  constructor(public a: Point, public b: Point) {}
-
-  get size() {
-    return this.a.calcDistance(this.b);
-  }
-
-  get x1() {
-    return this.a.x;
-  }
-
-  get y1() {
-    return this.a.y;
-  }
-
-  get x2() {
-    return this.b.x;
-  }
-
-  get y2() {
-    return this.b.y;
-  }
-
-  get center() {
-    return this.a.add(this.b).divByNumber(2);
-  }
-}
-
+/**
+ * Точка.
+ * Поддерживает Декартовые и полярные координаты.
+ */
 export class Point {
   static byPolar(radius: number, angle: number) {
     return new Point(Math.cos(angle), Math.sin(angle)).mulByNumber(radius);
